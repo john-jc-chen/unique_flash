@@ -1,0 +1,10 @@
+User Name:ADMIN
+New Password:OZNGZOMUUM
+COM Port:COM6
+Baud Rate:9600
+TFTP:192.168.100.1
+Set Factory Default:No               #(Yes/No) Some switches need to set default to make new password effective
+Firmware Name:MBB-GEM-004-fw-1.0.0.21.img
+Bootloader Name:
+
+*****Commands Start From Here*****
