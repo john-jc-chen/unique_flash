@@ -182,7 +182,8 @@ if serialPort.IsOpen():
                             break
                         elif 'upgrade?' in message:
                             serialPort.Send('y')
-                            break
+                        elif 'successfully' in message:
+                            serialPort.Send('')
                     serialPort.Send('reload')
                     time.sleep(1.0)
                     OnReceiveSerialData()
