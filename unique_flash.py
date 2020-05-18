@@ -4,8 +4,8 @@ import sys
 import time
 import re
 import os
-import logging
-
+#import logging
+from datetime import datetime
 import _thread
 
 logFile = None
@@ -82,13 +82,17 @@ def write_log(message):
         log_dir = os.getcwd() + "\\log"
     if not os.path.isdir(log_dir):
         os.mkdir(log_dir)
-    serial= '123'
+
     if os.name == 'posix':
         file_name =log_dir + '/' + serial_number
     else:
         file_name =log_dir + "\\" + serial_number
-    logging.basicConfig(filename=file_name,level=logging.INFO, format='%(asctime)s - %(message)s', datefmt = '%d-%b-%y %H-%M-%S')
-    logging.info(message)
+    # logging.basicConfig(filename=file_name,level=logging.INFO, format='%(asctime)s - %(message)s', datefmt = '%d-%b-%y %H-%M-%S')
+    # logging.info(message)
+    # logging.shutdown()
+    with open(file_name, 'w') as f:
+        f.write("{}\n {}\n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), message))
+
 
 def set_factory_default():
     while True:
