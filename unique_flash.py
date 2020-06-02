@@ -196,6 +196,17 @@ if serialPort.IsOpen():
                             serialPort.Send('y')
                         elif 'successfully' in message:
                             serialPort.Send('')
+                    serialPort.Send('firmware upgrade tftp://' + TFTP + '/' + firmware + ' fallback')
+                    time.sleep(1.0)
+                    while True:
+                        message = serialPort.serialport.readline().decode("utf-8", errors='ignore')
+                        print(message)
+                        if "SMIS#" in message:
+                            break
+                        elif 'upgrade?' in message:
+                            serialPort.Send('y')
+                        elif 'successfully' in message:
+                            serialPort.Send('')
                     serialPort.Send('reload')
                     time.sleep(1.0)
                     OnReceiveSerialData()
